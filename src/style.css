@@ -38,6 +38,10 @@
   outline: none;
   border: 1px solid rgb(138, 137, 137);
 }
+#green {
+  background-color: rgb(78, 192, 43);
+  color: white;
+}
 
 #red {
   background-color: rgb(245, 54, 54);

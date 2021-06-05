@@ -7,7 +7,20 @@ export default function App() {
 
   const addtask = () => {
     let n = parseInt(Math.random() * randomtask.length);
-    setTask([...task, randomtask[n]]);
+    let id = Math.random() * 1000;
+    id = id.toString();
+    let item = {
+      completed: true,
+      value: randomtask[n],
+      id: id
+    };
+    setTask([...task, item]);
+  };
+
+  const complete = (index, id) => {
+    task[index].completed = false;
+    setTask([...task]);
+    document.getElementById(id).style.textDecoration = 'line-through';
   };
 
   const del = index => {
@@ -25,8 +38,17 @@ export default function App() {
         task.map((item, index) => {
           return (
             <div key={index + 1} className="taskcon">
-              <p className="text">{item}</p>
+              <p id={item.id} className="text">
+                {item.value}
+              </p>
               <div className="butcon">
+                {item.completed ? (
+                  <button id="green" onClick={() => complete(index, item.id)}>
+                    Complete
+                  </button>
+                ) : (
+                  <div />
+                )}
                 <button id="red" onClick={() => del(index)}>
                   Delete
                 </button>
